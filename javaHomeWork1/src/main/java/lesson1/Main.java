@@ -1,148 +1,88 @@
 package lesson1;
 
-import java.io.BufferedInputStream;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        //     ex1();
-//        ex2();
+
+
         //homeWork3();
         //homeWork1();
         homeWork2();
     }
 
-    private static void ex1() {
-        Scanner iScanner = new Scanner(System.in);
-        System.out.print("Имя: ");
-        String name = iScanner.nextLine();
-        System.out.printf("Привет, %s!%n", name);
-        iScanner.close();
-
-    }
-
-    private static void ex2() {
-        int[] binaryArray = new int[1000];
-        int counter = 0;
-        int maxLength = 0;
-        Random random = new Random();
-//        double randomFromMath = Math.random();
-//        System.out.println(randomFromMath);
-
-        for (int i = 0; i < binaryArray.length; i++) {
-            binaryArray[i] = random.nextInt(2);
-        }
-
-//        System.out.println(Arrays.toString(binaryArray));
-
-        for (int num : binaryArray) {
-            if (num == 1) {
-                counter++;
-            } else {
-                /*if (counter > maxLength) {
-                    maxLength = counter;
-                    counter = 0;
-                }*/
-
-                //(условие) ? true : false;
-//                maxLength = (counter > maxLength) ? counter : maxLength;
-
-                maxLength = Math.max(counter, maxLength);
-                counter = 0;
-            }
-        }
-
-        System.out.println("max length: " + Math.max(counter, maxLength));
-
-    }
-
-    private static void homeWork2() {
+    public static boolean homeWork2() {
+        int year = -1;
 
         Scanner iScanner = new Scanner(System.in);
         System.out.printf("Введите год: ");
-        int year = iScanner.nextInt();
-        iScanner.close();
-        if (year%4!=0){
+        do {
+            try {
+                year = iScanner.nextInt();
+            } catch (Exception e) {
+                System.out.printf("Ошибка!Введите число! %s!%n ");
+//            e.printStackTrace();
 
-            System.out.printf("Год не високосный");
-        }
-        else if (year%100==0) {
-            if (year%400==0){
-                System.out.printf("Год високосный");
             }
-            else {
-                System.out.printf("Год не високосный");
-            }
-            
+            iScanner.close();
+        }while(year<=0);
+
+        boolean yearChoice = ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0));
+
+        if (yearChoice) {
+            System.out.printf("Високосный год!");
+
+        } else {
+            System.out.printf("Невисокосный год!");
         }
-        else {
-            System.out.printf("Год високосный");
-        }
 
-
-
+        return yearChoice;
     }
-
-    private static void homeWork3() {
-        int number= 3;
-        int[] Array = new int[10];
-        Random random = new Random();
-        for (int i = 0; i < Array.length; i++) {
-            Array[i] = random.nextInt(5);
-
-        }
-        System.out.println(Arrays.toString(Array));
-        for (int i = 0; i < Array.length; i++)
-        {
-
-            for (int j = i+1; j < Array.length; j++)
-            {
-                if(Array[i]==number && Array[j]!=number){
-
-                    int temp = Array[i];
-                    Array[i] = Array[j];
-                    Array[j] = temp;
-
-                }
-
-            }
-
-        }
-        System.out.println(Arrays.toString(Array));
-    }
-
 
 
     private static void homeWork1() {
-        int[] Array = new int[10];
+        int[] myArray = new int[10];
         Random random = new Random();
-
-        for (int i = 0; i < Array.length; i++) {
-            Array[i] = random.nextInt(10);
-
+        for (int i = 0; i < myArray.length; i++) {
+            myArray[i] = random.nextInt(10);
         }
-        System.out.println(Arrays.toString(Array));
-            int max;
-            int min;
-            max = min = Array[0];
-        for (int i = 0; i < Array.length; i++) {
-
-                if(Array[i] > max) max = Array[i];
-                if(Array[i] > max) max = Array[i];
-            }
-
-
-        System.out.println("Min: " +min);
-        System.out.println("Max: " +max);
-
-        }
-
-
+        System.out.println(Arrays.toString(myArray));
+        Arrays.sort(myArray);
+        int min = myArray[0];
+        int max = myArray[myArray.length - 1];
+        System.out.printf("Минимальное число массива, %s!%n", min);
+        System.out.printf("Максимальное число массива, %s!%n", max);
     }
+}
 
 
+//    private static void homeWork3() {
+//        int number = 3;
+//        int[] myArray = new int[10];
+//        Random random = new Random();
+//        for (int i = 0; i < myArray.length; i++) {
+//            myArray[i] = random.nextInt(5);
+//
+//        }
+//        System.out.println(Arrays.toString(myArray));
+//        for (int i = 0; i < myArray.length; i++) {
+//
+//            for (int j = i + 1; j < myArray.length; j++) {
+//                if (myArray[i] == number && myArray[j] != number) {
+//
+//                    int temp = myArray[i];
+//                    myArray[i] = myArray[j];
+//                    myArray[j] = temp;
+//
+//                }
+//
+//            }
+//
+//        }
+//        System.out.println(Arrays.toString(Array));
+//    }
 
 
 
